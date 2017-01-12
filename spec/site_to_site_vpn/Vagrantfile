@@ -4,7 +4,16 @@ configs = YAML.load_file('config.yaml')
 
 Vagrant.configure('2') do |config|
   config.vm.provider :libvirt do |libvirt|
-    libvirt.cpu_mode = 'host-passthrough'
+    cpuinfo = File.read('/proc/cpuinfo')
+    if cpuinfo =~ /vmx|svm/
+      libvirt.cpu_mode = 'host-passthrough'
+    else
+      libvirt.driver = 'qemu'
+      libvirt.cpu_mode = 'custom'
+      libvirt.cpu_model = 'Nehalem'
+      libvirt.cpu_feature name: 'svm', policy: 'disable'
+      #libvirt.cpu_feature name: 'vmx', policy: 'force'
+    end
   end
   configs.keys.each do |host|
     config.vm.define host.to_sym do |c|
