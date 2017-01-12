@@ -19,3 +19,4 @@ tmp
 .ruby-version
 .rbenv-gemsets
 .vagrant
+.rake_tasks~

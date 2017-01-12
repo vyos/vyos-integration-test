@@ -4,14 +4,14 @@ require 'yaml'
 
 spec_tasks = []
 configs = {}
-tests = Dir.glob("spec/*/").map { |s| s.gsub(/spec\//, '').gsub(/\//, '') }
+tests = Dir.glob('spec/*/').map { |s| s.gsub(%r{spec/}, '').gsub(%r{/}, '') }
 tests.each do |test|
   spec_tasks.concat(["spec:#{test}"])
   configs[test] = YAML.load_file("spec/#{test}/config.yaml")
 end
 
-task :spec => spec_tasks
-task :all => "spec:all"
+task spec: spec_tasks
+task all: 'spec:all'
 
 namespace :spec do
   tests.each do |test|
@@ -39,8 +39,8 @@ namespace :spec do
       Dir.chdir("spec/#{test}") do
         config.keys.each do |host|
           RSpec::Core::RakeTask.new(host.to_sym) do |t|
-            ENV["TARGET_TEST"] = test
-            ENV["TARGET_HOST"] = host
+            ENV['TARGET_TEST'] = test
+            ENV['TARGET_HOST'] = host
             t.pattern = "spec/#{test}/#{host}_spec.rb"
           end
         end
