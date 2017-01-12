@@ -11,8 +11,7 @@ Vagrant.configure('2') do |config|
       libvirt.driver = 'qemu'
       libvirt.cpu_mode = 'custom'
       libvirt.cpu_model = 'Nehalem'
-      libvirt.cpu_feature name: 'svm', policy: 'disable'
-#      libvirt.cpu_feature name: 'vmx', policy: 'force'
+      libvirt.cpu_feature name: 'vmx', policy: 'force'
     end
   end
   configs.keys.each do |host|
