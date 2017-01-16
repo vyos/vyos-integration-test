@@ -1,0 +1,10 @@
+#!/bin/vbash
+
+source /opt/vyatta/etc/functions/script-template
+
+<% configs[host][:networks].keys.each_with_index do |net, i| %>
+set interface ethernet eth<%= i+1 %> address <%= configs[host][:networks][net] %>
+<% end %>
+
+commit
+save

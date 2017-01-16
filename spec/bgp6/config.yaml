@@ -1,0 +1,15 @@
+---
+vyos1:
+  :networks:
+    net61: "fd00:5679:4f53:1::b/64"
+    net62: "fd00:5679:4f53:2::b/64"
+vyos2:
+  :networks:
+    net61: "fd00:5679:4f53:1::c/64"
+    net63: "fd00:5679:4f53:3::b/64"
+vyos3:
+  :networks:
+    net62: "fd00:5679:4f53:2::d/64"
+vyos4:
+  :networks:
+    net63: "fd00:5679:4f53:3::e/64"
