@@ -17,8 +17,9 @@ Vagrant.configure('2') do |config|
   end
   configs.keys.each do |host|
     config.vm.define host.to_sym do |c|
-      c.vm.box = 'higebu/vyos'
+      c.vm.box = ENV['VYOS_VAGRANT_BOX'] || 'higebu/vyos'
       c.vm.synced_folder './', '/vagrant',
+                         type: "rsync",
                          owner: 'vagrant',
                          group: 'vyattacfg',
                          mount_options: ['dmode=775,fmode=775']
@@ -36,7 +37,9 @@ Vagrant.configure('2') do |config|
         $script = ERB.new(File.read('../interface_script.erb')).result(binding)
       end
       if !$script.empty?
-        c.vm.provision 'shell', inline: $script
+        File.write("#{host}_interface.sh", $script)
+        c.vm.provision 'file', source: "#{host}_interface.sh", destination: "/tmp/#{host}_interface.sh"
+        c.vm.provision 'shell', path: "#{host}_interface.sh"
       end
       c.vm.provision 'shell', path: "#{host}_script.sh"
     end

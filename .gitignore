@@ -20,3 +20,4 @@ tmp
 .rbenv-gemsets
 .vagrant
 .rake_tasks~
+*_interface.sh
