@@ -42,7 +42,7 @@ namespace :spec do
             ENV['TARGET_TEST'] = test
             ENV['TARGET_HOST'] = host
             if ENV['CI_FLAG']
-              t.rspec_opts = "--format RspecJunitFormatter --out ../report/serverspec/results_#{test}_#{host}.xml"
+              t.rspec_opts = "--format RspecJunitFormatter --out ./report/serverspec/results_#{test}_#{host}.xml"
             end
             t.pattern = "spec/#{test}/#{host}_spec.rb"
           end
