@@ -18,11 +18,13 @@ Vagrant.configure('2') do |config|
   configs.keys.each do |host|
     config.vm.define host.to_sym do |c|
       c.vm.box = ENV['VYOS_VAGRANT_BOX'] || 'higebu/vyos'
-      c.vm.synced_folder './', '/vagrant',
-                         type: "rsync",
-                         owner: 'vagrant',
-                         group: 'vyattacfg',
-                         mount_options: ['dmode=775,fmode=775']
+      if c.vm.box == 'higebu/vyos'
+        c.vm.synced_folder './', '/vagrant',
+                           type: "rsync",
+                           owner: 'vagrant',
+                           group: 'vyattacfg',
+                           mount_options: ['dmode=775,fmode=775']
+      end
       c.vm.hostname = host
 
       $script = ''
