@@ -1,6 +1,6 @@
 require 'serverspec_vyos_config'
 
-def config_spec
+shared_examples_for 'config_spec' do
   test = ENV['TARGET_TEST']
   host = ENV['TARGET_HOST']
 

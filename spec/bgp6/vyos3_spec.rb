@@ -1,7 +1,9 @@
 require_relative '../spec_helper'
 require_relative '../config_spec'
 
-config_spec
+describe 'vyos3_config' do
+  include_examples 'config_spec'
+end
 
 # Wait for advertising
 sleep(10)
