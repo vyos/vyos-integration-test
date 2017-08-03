@@ -6,6 +6,7 @@ VyOS integration test with Vagrant, KVM and Serverspec.
 
 ```
 git clone https://github.com/higebu/vyos-integration-test.git
+cd vyos-integration-test
 ./setup.sh
 ```
 
