@@ -10,6 +10,12 @@ cd vyos-integration-test
 ./setup.sh
 ```
 
+* Set vagrant box (default to higebu/vyos)
+
+```
+export VYOS_VAGRANT_BOX=vyos/current
+```
+
 ## Run test
 
 ```
