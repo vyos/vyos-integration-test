@@ -6,7 +6,13 @@ fi
 
 source /opt/vyatta/etc/functions/script-template
 
-set protocols static route 10.0.2.0/24 next-hop 10.0.3.11
+set protocols bgp 65537 parameters router-id 10.0.3.14
+
+set protocols bgp 65537 neighbor 10.0.3.12 remote-as 65537
+set protocols bgp 65537 neighbor 10.0.3.12 update-source 10.0.3.14
+set protocols bgp 65537 neighbor 10.0.3.12 advertisement-interval 1
+
+set protocols bgp 65537 network 10.0.3.0/24
 
 commit
 save

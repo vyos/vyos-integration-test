@@ -6,7 +6,7 @@ describe 'vyos4_config' do
 end
 
 # Wait for advertising
-sleep(10)
+sleep(60)
 
 describe host('10.0.2.13') do
   it { should be_reachable.with(timeout: 10) }
