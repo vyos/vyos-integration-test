@@ -1,0 +1,15 @@
+---
+vyos1:
+  :networks:
+    net1: "10.0.1.11/24"
+    net2: "10.0.2.11/24"
+vyos2:
+  :networks:
+    net1: "10.0.1.12/24"
+    net3: "10.0.3.12/24"
+vyos3:
+  :networks:
+    net2: "10.0.2.13/24"
+vyos4:
+  :networks:
+    net3: "10.0.3.14/24"
