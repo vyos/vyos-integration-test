@@ -6,6 +6,8 @@ fi
 
 source /opt/vyatta/etc/functions/script-template
 
+set system host-name router
+set system domain-name example.com
 set system time-zone Asia/Tokyo
 
 commit
